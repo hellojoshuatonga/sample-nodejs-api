@@ -25,7 +25,7 @@ spec:
               name: server-config
           - secretRef:
               name: api-keys
-          image: joshuatonga/sample-nodejs-api@sha256:ae32fb942f0113525b35ca4e47e2e396a3adbe14c555a00cd25c509303ba4310
+          image: joshuatonga/sample-nodejs-api@sha256:4080ce33e7309a1916aaefdc71d843c224983d4bfa6620d0719ced73e22810a3
           imagePullPolicy: Always
           name: application
           ports:
@@ -38,3 +38,15 @@ spec:
             limits:
               cpu: 150m
               memory: 150Mi
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 3

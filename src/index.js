@@ -4,6 +4,11 @@ const memer = require('random-jokes-api');
 const app = express();
 const PORT = 3000;
 
+app.get('/healthcheck', (req, res) => {
+  // Check if system is health, db connections, etc
+  return res.json({ status: 'healthy' });
+})
+
 app.get('/api/jokes', (req, res) => {
   res.json({
     text: memer.joke(),
@@ -22,9 +27,9 @@ const closeGracefully = (signal) => {
       return;
     }
 
-    console.log('HTTP server closed')
+    console.log('HTTP server closed');
   })
 }
 
-process.once('SIGINT', closeGracefully)
-process.once('SIGTERM', closeGracefully)
+process.once('SIGINT', closeGracefully);
+process.once('SIGTERM', closeGracefully);
