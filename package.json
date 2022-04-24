@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/hellojoshuatonga/sample-nodejs-api/issues"
   },
-  "homepage": "https://github.com/hellojoshuatonga/sample-nodejs-api#readme"
+  "homepage": "https://github.com/hellojoshuatonga/sample-nodejs-api#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "random-jokes-api": "^1.5.9"
+  }
 }
