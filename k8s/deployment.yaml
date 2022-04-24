@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample
+    role: api
+  name: sample-api
+spec:
+  selector:
+    matchLabels:
+      app: sample
+      role: api
+  template:
+    metadata:
+      labels:
+        app: sample
+        role: api
+    spec:
+      containers:
+        - env:
+          - name: LOG_LEVEL
+            value: verbose
+          envFrom:
+          - configMapRef:
+              name: server-config
+          - secretRef:
+              name: api-keys
+          image: joshuatonga/sample-nodejs-api@sha256:ae32fb942f0113525b35ca4e47e2e396a3adbe14c555a00cd25c509303ba4310
+          imagePullPolicy: Always
+          name: application
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 150m
+              memory: 150Mi
