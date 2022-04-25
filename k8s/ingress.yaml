@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - paymongo.k8s.joshuatonga.com
-      secretName: paymongo-tls
+        - sample-api.k8s.joshuatonga.com
+      secretName: sample-api-tls
   rules:
-    - host: paymongo.k8s.joshuatonga.com
+    - host: sample-api.k8s.joshuatonga.com
       http:
         paths:
           - path: /
